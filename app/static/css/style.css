@@ -1,0 +1,32 @@
+body {
+    background-color: #000;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    animation: glow;
+    animation-iteration-count: infinite;
+    animation-duration: 5s;
+}
+#canvas-container {
+    width: auto;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    
+}
+canvas {
+    background-color: white;
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 5px;
+    
+}
+
+@keyframes glow {
+    0% {background-color: #000;}
+    50% {background-color: #333;}
+    100% {background-color: #000;}
+}
+
+div.coloursquare {
+    width: 32px;
+    height: 32px;
+}
