@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<body oncontextmenu="event.preventDefault();">
+<div id="canvas-container">
+    <canvas id="pixelcanvas" width="512" height="512"></canvas>
+</div>
+
+<script src="{{ url_for('static', filename='segicanvas.js') }}"></script>
+<script>
+        // Automatically load the canvas upon loading this script
+        if ('{{ canvasstring }}' != ''){
+            parseCanvasString('{{ canvasstring }}');
+        } else {
+            ctx.fillStyle = colours[colourNames['white']];
+            ctx.fillRect(0, 0, 512, 512);
+        }
+        
+</script>
+</body>
+<p hidden id="canvasid">{{ canvasid }}</p>
+{% endblock %}
