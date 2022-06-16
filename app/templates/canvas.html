@@ -1,8 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
 <body oncontextmenu="event.preventDefault();">
+    <h1>Canvas #{{ canvasid }}</h1>
 <div id="canvas-container">
     <canvas id="pixelcanvas" width="512" height="512"></canvas>
+</div>
+<div id="colourcontainer">
+    <div class="box black" width="32" height="32" onclick="selectColour('black')"></div>
+    <div class="box red" width="32" height="32" onclick="selectColour('red')"></div>
+    <div class="box green" width="32" height="32" onclick="selectColour('green')"></div>
+    <div class="box blue" width="32" height="32"  onclick="selectColour('blue')"></div>
 </div>
 
 <script src="{{ url_for('static', filename='segicanvas.js') }}"></script>
@@ -11,9 +18,10 @@
         if ('{{ canvasstring }}' != ''){
             parseCanvasString('{{ canvasstring }}');
         } else {
-            ctx.fillStyle = colours[colourNames['white']];
+            ctx.fillStyle = "rgba(255,255,255,255)";
             ctx.fillRect(0, 0, 512, 512);
         }
+        
         
 </script>
 </body>

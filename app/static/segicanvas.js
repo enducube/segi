@@ -3,7 +3,7 @@ var ctx = c.getContext("2d");
 var pixelCanvasSize = 64;
 const pixelSize = 8;
 var selectedPixel = [0, 0];
-var selectedColour = "red"
+var selectedColour = "black"
 var drawing = false;
 var drawingalt = false;
 var canvas_id = null;
@@ -12,6 +12,7 @@ var canvas_id = null;
 const colours = [
     "rgba(0,0,0,0)",
     "rgba(255,255,255,255)",
+    "rgba(0,0,0,255)",
     "rgba(255,0,0,255)",
     "rgba(0,255,0,255)",
     "rgba(0,0,255,255)"
@@ -19,9 +20,10 @@ const colours = [
 
 const colourNames = {
     "white": 1,
-    "red": 2,
-    "blue": 3,
+    "black": 2,
+    "red": 3,
     "green": 4,
+    "blue": 5,
 
 };
 
@@ -65,7 +67,8 @@ c.addEventListener("mousemove", function(e) {
         socket.emit("pixel", {
             "xpos": selectedPixel[0], 
             "ypos": selectedPixel[1],
-            "colour": selectedColour
+            "colour": selectedColour,
+            "room": $("#canvasid").html()
         });
     }
     if (drawingalt) {
@@ -73,18 +76,20 @@ c.addEventListener("mousemove", function(e) {
         socket.emit("pixel", {
             "xpos": selectedPixel[0], 
             "ypos": selectedPixel[1],
-            "colour": "white"
+            "colour": "white",
+            "room": $("#canvasid").html()
         });
     }
 });
 
 c.addEventListener("mousedown", function(e){
     if (e.button == 0) {
-        drawPixel(selectedPixel[0], selectedPixel[1], "red");
+        drawPixel(selectedPixel[0], selectedPixel[1], selectedColour);
         socket.emit("pixel", {
             "xpos": selectedPixel[0], 
             "ypos": selectedPixel[1],
-            "colour": "red"
+            "colour": selectedColour,
+            "room": $("#canvasid").html()
         });
         drawing = true;
     } else if (e.button == 2) {
@@ -93,7 +98,8 @@ c.addEventListener("mousedown", function(e){
         socket.emit("pixel", {
             "xpos": selectedPixel[0], 
             "ypos": selectedPixel[1],
-            "colour": "white"
+            "colour": "white",
+            "room": $("#canvasid").html()
         });
         drawingalt = true;
     }
@@ -109,13 +115,17 @@ c.addEventListener("mouseup", function(e){
     });
 });
 
-$("div.coloursquare").on("click", function(e) {
-
-});
-
-for (c=0;c<colourNames.length) {
-    
+function selectColour(colour) {
+    var colourBoxes = document.getElementsByClassName("box");
+    var n = colourBoxes.length;
+    for (i=0;i<n;i++) {
+        var e = colourBoxes[i];
+        e.classList.remove("selected");
+    }
+    document.getElementsByClassName(colour)[0].classList.add("selected");
+    selectedColour = colour;
 }
+
 
 // Socket.IO functionality ------- Real-Time pixel-placing
 
@@ -124,6 +134,9 @@ socket.on("pixel", function(data) {
     drawPixel(data.xpos, data.ypos, data.colour);
 });
 
+socket.on("test", function(data) {
+    console.log("SEGI by enducube");
+});
 
 
 

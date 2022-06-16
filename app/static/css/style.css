@@ -1,9 +1,14 @@
 body {
     background-color: #000;
+    color:whitesmoke;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     animation: glow;
     animation-iteration-count: infinite;
     animation-duration: 5s;
+}
+h1 {
+    position: relative;
+    text-align: center;
 }
 #canvas-container {
     width: auto;
@@ -14,19 +19,42 @@ body {
 }
 canvas {
     background-color: white;
-    border-style: solid;
-    border-radius: 5px;
-    border-width: 5px;
     
 }
 
 @keyframes glow {
-    0% {background-color: #000;}
-    50% {background-color: #333;}
-    100% {background-color: #000;}
+    0% {background-color: #333;}
+    50% {background-color: #aaa;}
+    100% {background-color: #333;}
 }
 
-div.coloursquare {
+#colourcontainer {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+.box {
     width: 32px;
     height: 32px;
+    display: inline-block;
+    margin: 4px;
+    border-style: solid;
+    border-color: black;
+    border-width: 4px;
+}
+.black {
+    background-color: black;
+}
+.red {
+    background-color: red;
+}
+.green {
+    background-color: rgb(0, 255, 0);
+}
+.blue {
+    background-color: blue;
+}
+.selected {
+   border-color: white;
 }
