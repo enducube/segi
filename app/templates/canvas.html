@@ -6,10 +6,13 @@
     <canvas id="pixelcanvas" width="512" height="512"></canvas>
 </div>
 <div id="colourcontainer">
-    <div class="box black" width="32" height="32" onclick="selectColour('black')"></div>
+    <div class="box black selected" width="32" height="32" onclick="selectColour('black')"></div>
     <div class="box red" width="32" height="32" onclick="selectColour('red')"></div>
     <div class="box green" width="32" height="32" onclick="selectColour('green')"></div>
     <div class="box blue" width="32" height="32"  onclick="selectColour('blue')"></div>
+    <div class="box yellow" width="32" height="32" onclick="selectColour('yellow')"></div>
+    <div class="box turquoise" width="32" height="32" onclick="selectColour('turquoise')"></div>
+    <div class="box purple" width="32" height="32"  onclick="selectColour('purple')"></div>
 </div>
 
 <script src="{{ url_for('static', filename='segicanvas.js') }}"></script>

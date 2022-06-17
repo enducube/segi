@@ -15,7 +15,10 @@ const colours = [
     "rgba(0,0,0,255)",
     "rgba(255,0,0,255)",
     "rgba(0,255,0,255)",
-    "rgba(0,0,255,255)"
+    "rgba(0,0,255,255)",
+    "rgba(255,255,0,255)",
+    "rgba(0,255,255,255)",
+    "rgba(255,0,255,255)"
 ];
 
 const colourNames = {
@@ -24,6 +27,9 @@ const colourNames = {
     "red": 3,
     "green": 4,
     "blue": 5,
+    "yellow": 6,
+    "turquoise": 7,
+    "purple": 8,
 
 };
 

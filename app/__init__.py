@@ -12,7 +12,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Init other modules made by the app
 
-socketio = SocketIO(app=app,logger=True)
+socketio = SocketIO(app=app)
 db = SQLAlchemy()
 db.init_app(app)
 
