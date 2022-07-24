@@ -1,10 +1,7 @@
 body {
-    background-color: #000;
+    background-color: rgb(48, 48, 48);
     color:whitesmoke;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
-    animation: glow;
-    animation-iteration-count: infinite;
-    animation-duration: 5s;
 }
 h1 {
     position: relative;
@@ -19,13 +16,10 @@ h1 {
 }
 canvas {
     background-color: white;
-    
-}
-
-@keyframes glow {
-    0% {background-color: #333;}
-    50% {background-color: #aaa;}
-    100% {background-color: #333;}
+    border-width: 5px;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: black;
 }
 
 #colourcontainer {
@@ -42,6 +36,7 @@ canvas {
     border-style: solid;
     border-color: black;
     border-width: 4px;
+    border-radius: 5px;
 }
 
 .black {

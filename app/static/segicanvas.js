@@ -3,6 +3,7 @@ var ctx = c.getContext("2d");
 var pixelCanvasSize = 64;
 const pixelSize = 8;
 var selectedPixel = [0, 0];
+var oldSelectedPixel = [];
 var selectedColour = "black"
 var drawing = false;
 var drawingalt = false;
@@ -40,7 +41,7 @@ function drawPixel(x, y, colour) {
     ctx.fillRect(x*pixelSize, y*pixelSize, pixelSize, pixelSize);
 }
 
-// canvasToString() and parseCanvasString(canvasstring) - handles saving and loading canvas from a string of numbers
+// canvasToString() and parseCanvasString(canvasstring) - handles saving and loading canvas to and from a string of numbers
 function canvasToString() {
     var finalstring = ""
     for(i=0;i<pixelCanvasSize;i++){
@@ -76,7 +77,7 @@ c.addEventListener("mousemove", function(e) {
             "colour": selectedColour,
             "room": $("#canvasid").html()
         });
-    }
+    } else
     if (drawingalt) {
         drawPixel(selectedPixel[0], selectedPixel[1], "white");
         socket.emit("pixel", {
@@ -133,7 +134,7 @@ function selectColour(colour) {
 }
 
 
-// Socket.IO functionality ------- Real-Time pixel-placing
+// Socket.IO functionality ------- Real-Time pixel-placing & synchronisation
 
 socket.on("pixel", function(data) {
     //console.log(data);
