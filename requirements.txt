@@ -4,3 +4,5 @@ flask_socketio
 flask_sqlalchemy
 gevent
 geventwebsocket
+flask_wtf
+wtforms

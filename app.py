@@ -1,4 +1,4 @@
-# SEGI (Super Eloquent Good Imagery) by enducube
+# SEGI Canvas by enducube
 
 from app import app, socketio
 

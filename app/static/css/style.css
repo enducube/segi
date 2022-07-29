@@ -12,7 +12,6 @@ h1 {
     margin: 0 auto;
     display: flex;
     justify-content: center;
-    
 }
 canvas {
     background-color: white;
@@ -63,4 +62,17 @@ canvas {
 
 .selected {
    border-color: white;
+}
+
+.upvote-button {
+    background:transparent;
+    border-style: none;
+    color:white;
+    width:15px;
+    height:15px;
+
+}
+li {
+    display: inline;
+    text-decoration: none;
 }

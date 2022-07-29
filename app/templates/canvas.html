@@ -1,8 +1,19 @@
 {% extends "base.html" %}
+{% block header %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js" integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ==" crossorigin="anonymous"></script>
+<script>
+    var socket = io();
+    socket.on("connect", function() {
+        socket.emit("join", {"room": "{{ canvasid }}"});
+    } );
+</script>
+{% endblock %}
 {% block content %}
 <body oncontextmenu="event.preventDefault();">
-    <h1>Canvas #{{ canvasid }}</h1>
+    <h1>canvas #{{ canvasid }}</h1>
 <div id="canvas-container">
+    <button class="material-icons upvote-button" onclick="upvote()">keyboard_arrow_up</button><span id="upvote-count">{{ upvotenumber }}</span>
     <canvas id="pixelcanvas" width="512" height="512"></canvas>
 </div>
 <div id="colourcontainer">

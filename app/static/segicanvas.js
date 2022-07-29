@@ -8,7 +8,7 @@ var selectedColour = "black"
 var drawing = false;
 var drawingalt = false;
 var canvas_id = null;
-
+var upvoted = false;
 
 const colours = [
     "rgba(0,0,0,0)",
@@ -144,6 +144,12 @@ socket.on("pixel", function(data) {
 socket.on("test", function(data) {
     console.log("SEGI by enducube");
 });
+
+function upvote() {
+    socket.emit("upvote", {
+        "id": $("#canvasid").html()
+    });
+}
 
 
 

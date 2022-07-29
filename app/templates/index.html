@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+    <body>
+        <h1>Welcome to SEGI Canvas</h1>
+        <a href="/newcanvas">create a new canvas</a>
+        <p>or</p>
+        <p>visit the #<input type="number" id="canvasgoto">th canvas <button onclick="gotoCanvas($('#canvasgoto').val())">Go!</button></p>
+        <script>
+            function gotoCanvas(canvasid) {
+                window.location.replace("/"+canvasid.toString());
+            }
+        </script>
+    </body>
+{% endblock %}

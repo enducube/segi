@@ -3,6 +3,8 @@ from flask import Flask
 import gevent, geventwebsocket
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField
 # Initialise app and config
 
 app = Flask(__name__)
