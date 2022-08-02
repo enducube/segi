@@ -11,10 +11,10 @@
 {% endblock %}
 {% block content %}
 <body oncontextmenu="event.preventDefault();">
-    <h1>canvas #{{ canvasid }}</h1>
+    <h1>canvas #{{ canvasid }}</h1><button class="material-icons upvote-button" id="upvote-button" onclick="upvote()">keyboard_arrow_up</button><span id="upvote-count">{{ upvotenumber }}</span>
 <div id="canvas-container">
-    <button class="material-icons upvote-button" onclick="upvote()">keyboard_arrow_up</button><span id="upvote-count">{{ upvotenumber }}</span>
     <canvas id="pixelcanvas" width="512" height="512"></canvas>
+    
 </div>
 <div id="colourcontainer">
     <div class="box black selected" width="32" height="32" onclick="selectColour('black')"></div>
@@ -35,7 +35,11 @@
             ctx.fillStyle = "rgba(255,255,255,255)";
             ctx.fillRect(0, 0, 512, 512);
         }
-        
+
+        if ({{ upvoted }}) {
+            upvoted = true;
+            document.getElementById("upvote-button").classList.add("upvoted");
+        }
         
 </script>
 </body>

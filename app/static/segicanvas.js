@@ -146,10 +146,26 @@ socket.on("test", function(data) {
 });
 
 function upvote() {
-    socket.emit("upvote", {
-        "id": $("#canvasid").html()
-    });
+    if (!upvoted) {
+        upvoted = true;
+        document.getElementById("upvote-button").classList.add("upvoted");
+        socket.emit("upvote", {
+            "id": $("#canvasid").html()
+        });
+    } else {
+        upvoted = false;
+        document.getElementById("upvote-button").classList.remove("upvoted");
+        socket.emit("unupvote", {
+            "id": $("#canvasid").html()
+        });
+    }
 }
 
+socket.on("upvoted", function(data) {
+    $("#upvote-count").html(data["upvotecount"].toString());
+});
+socket.on("unupvoted", function(data) {
+    $("#upvote-count").html(data["upvotecount"].toString());
+});
 
 

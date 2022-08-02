@@ -51,11 +51,17 @@ def newcanvas():
 
 # The actual canvas page
 @app.route("/canvas/<int:canvasid>")
+@login_required
 def canvas(canvasid):
+    upvoted = False
+    print(current_user.upvoted)
+    if Canvas.query.filter_by(id=canvasid).first() in current_user.upvoted:
+        upvoted = True
     upvotenumber = len(Canvas.query.filter_by(id=canvasid).first().upvotes)
     # get the canvas string from the database
     canvasstring = Canvas.query.filter_by(id=canvasid).first().canvasstring
-    return render_template("canvas.html", canvasstring=canvasstring, canvasid=canvasid, upvotenumber=upvotenumber)
+    return render_template("canvas.html", canvasstring=canvasstring, canvasid=canvasid, 
+    upvotenumber=upvotenumber, upvoted=str(upvoted).lower())
 
 
 # Socket.IO routes, used for real-time communication
@@ -80,5 +86,18 @@ def save_canvas(json):
 @socketio.on("upvote")
 def upvote(json):
     data = dict(json)
-    new_upvote = UserUpvoteCanvas(data["id"], current_user.id)
+    new_upvote = UserUpvoteCanvas.insert((None, data["id"], current_user.id))
+    db.session.execute(new_upvote)
+    db.session.commit()
+    data["upvotecount"] = len(db.session.query(UserUpvoteCanvas).filter_by(canvas_id=data["id"]).all())
+    socketio.emit("upvoted",data,to=data["id"])
+
+@socketio.on("unupvote")
+def unupvote(json):
+    data = dict(json)
+    
+    the_upvote = db.session.query(UserUpvoteCanvas).filter_by(canvas_id=data["id"]).first()
+    db.engine.execute(UserUpvoteCanvas.delete().where(UserUpvoteCanvas.c.id==the_upvote.id))
+    data["upvotecount"] = len(db.session.query(UserUpvoteCanvas).filter_by(canvas_id=data["id"]).all())
+    socketio.emit("unupvoted", data, to=data["id"])
 

@@ -1,7 +1,8 @@
 body {
-    background-color: rgb(48, 48, 48);
+    background-color: #123;
     color:whitesmoke;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
 }
 h1 {
     position: relative;
@@ -19,6 +20,7 @@ canvas {
     border-style: solid;
     border-radius: 5px;
     border-color: black;
+    cursor: crosshair;
 }
 
 #colourcontainer {
@@ -68,11 +70,32 @@ canvas {
     background:transparent;
     border-style: none;
     color:white;
-    width:15px;
-    height:15px;
+    width:30px;
+    height:30px;
 
 }
+
+.upvoted {
+    color:#0AF;
+}
+
+nav {
+    background-color: #346;
+    padding: 5px;
+    margin:0;
+}
+ul {
+    margin:0;
+    padding:2px;
+}
 li {
+    margin:0;
     display: inline;
     text-decoration: none;
+}
+li#username {
+    float: right;
+}
+li a {
+    color: #eee;
 }

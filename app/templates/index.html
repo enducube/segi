@@ -1,13 +1,17 @@
 {% extends "base.html" %}
+{% block header %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
+{% endblock %}
 {% block content %}
     <body>
         <h1>Welcome to SEGI Canvas</h1>
         <a href="/newcanvas">create a new canvas</a>
         <p>or</p>
-        <p>visit the #<input type="number" id="canvasgoto">th canvas <button onclick="gotoCanvas($('#canvasgoto').val())">Go!</button></p>
+        <p>visit the #<input type="number" id="canvasgoto"> canvas <button onclick="gotoCanvas()">Go!</button></p>
         <script>
-            function gotoCanvas(canvasid) {
-                window.location.replace("/"+canvasid.toString());
+            function gotoCanvas() {
+                window.location.replace("/canvas/"+$('#canvasgoto').val());
             }
         </script>
     </body>

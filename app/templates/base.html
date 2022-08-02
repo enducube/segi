@@ -8,14 +8,15 @@
     </head>
     <nav class="navbar">
         <ul>
+            <li><a href="/">SEGI</a></li>
             {% if current_user.is_authenticated %}
-            <li>{{ current_user.username }}</li>
+            <li id="username">{{ current_user.username }}</li>
             {% else %}
             <li><a href="/register">register</a></li>
             <li><a href="/login">login</a></li>
             {% endif %}
             <li id="userlogin"></li>
-            <li><a href="/">Home</a></li>
+            
             
         </ul>
     </nav>

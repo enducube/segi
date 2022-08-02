@@ -17,7 +17,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 socketio = SocketIO(app=app)
 db = SQLAlchemy()
 db.init_app(app)
-
 login_manager = LoginManager()
 login_manager.init_app(app)
 

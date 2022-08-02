@@ -4,6 +4,7 @@ from wtforms.validators import InputRequired
 from werkzeug.security import check_password_hash, generate_password_hash
 
 UserUpvoteCanvas = db.Table("user_upvote_canvas",
+    db.Column("id",db.Integer, primary_key=True),
     db.Column("canvas_id",db.Integer, db.ForeignKey("canvas.id")),
     db.Column("user_id",db.Integer, db.ForeignKey("user.id"))
 )

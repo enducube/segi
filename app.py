@@ -1,5 +1,3 @@
-# SEGI Canvas by enducube
-
 from app import app, socketio
 
 if __name__ == "__main__":
