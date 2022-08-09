@@ -1,3 +1,6 @@
+# SEGI by enducube
+# A real-time drawing canvas application powered by Flask, SQLAlchemy, and Socket.IO
+
 from app import app, socketio
 
 if __name__ == "__main__":

@@ -11,12 +11,13 @@
 {% endblock %}
 {% block content %}
 <body oncontextmenu="event.preventDefault();">
-    <h1>canvas #{{ canvasid }}</h1><button class="material-icons upvote-button" id="upvote-button" onclick="upvote()">keyboard_arrow_up</button><span id="upvote-count">{{ upvotenumber }}</span>
+    <h1>canvas #{{ canvasid }}</h1>
 <div id="canvas-container">
     <canvas id="pixelcanvas" width="512" height="512"></canvas>
-    
+    <button class="material-icons upvote-button" id="upvote-button" onclick="upvote()">keyboard_arrow_up</button><span id="upvote-count">{{ upvotenumber }}</span>
 </div>
 <div id="colourcontainer">
+    
     <div class="box black selected" width="32" height="32" onclick="selectColour('black')"></div>
     <div class="box red" width="32" height="32" onclick="selectColour('red')"></div>
     <div class="box green" width="32" height="32" onclick="selectColour('green')"></div>
@@ -24,6 +25,7 @@
     <div class="box yellow" width="32" height="32" onclick="selectColour('yellow')"></div>
     <div class="box turquoise" width="32" height="32" onclick="selectColour('turquoise')"></div>
     <div class="box purple" width="32" height="32"  onclick="selectColour('purple')"></div>
+    <div class="box white" width="32" height="32" onclick="selectColour('white')"></div>
 </div>
 
 <script src="{{ url_for('static', filename='segicanvas.js') }}"></script>

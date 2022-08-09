@@ -1,13 +1,44 @@
 body {
-    background-color: #123;
+    background-color: rgb(49, 22, 64);
     color:whitesmoke;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Helvetica, sans-serif;
     margin: 0;
 }
 h1 {
     position: relative;
     text-align: center;
 }
+
+nav {
+    background-color: rgb(94, 40, 102);
+    margin:0;
+    height: 30px;
+}
+ul {
+    margin:0;
+    padding:0px;
+}
+li {
+    margin:0px;
+    padding: 6px;
+    display: inline;
+    text-decoration: none;
+}
+li#username {
+    float: right;
+    background-color: rgb(111, 44, 122);
+    padding: 6px;
+    margin: 0;
+}
+li#username:hover {
+    background-color: rgb(134, 51, 147);
+}
+li a {
+    color: #eee;
+    text-align: center;
+    height: 100%;
+}
+
 #canvas-container {
     width: auto;
     margin: 0 auto;
@@ -21,6 +52,7 @@ canvas {
     border-radius: 5px;
     border-color: black;
     cursor: crosshair;
+    display: inline;
 }
 
 #colourcontainer {
@@ -42,6 +74,9 @@ canvas {
 
 .black {
     background-color: black;
+}
+.white {
+    background-color: white;
 }
 .red {
     background-color: rgb(255,0,0);
@@ -72,30 +107,23 @@ canvas {
     color:white;
     width:30px;
     height:30px;
+    display: inline;
+    vertical-align: top;
+    position:relative;
+    top:0px;
+    cursor:pointer;
+}
 
+#upvote-count {
+    position:relative;
+    top:32px;
+    right: 16px;
+    vertical-align: top;
+    text-align: left;
+    display:inline;
 }
 
 .upvoted {
-    color:#0AF;
+    color:rgb(230, 0, 255);
 }
 
-nav {
-    background-color: #346;
-    padding: 5px;
-    margin:0;
-}
-ul {
-    margin:0;
-    padding:2px;
-}
-li {
-    margin:0;
-    display: inline;
-    text-decoration: none;
-}
-li#username {
-    float: right;
-}
-li a {
-    color: #eee;
-}

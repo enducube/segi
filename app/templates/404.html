@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block header %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
+{% endblock %}
+{% block content %}
+<title></title>
+    <body>
+        <h1>the canvas #{{ canvasid }} does not exist</h1>
+        <a href="/newcanvas">create a new canvas</a>
+        <p>or</p>
+        <p>visit the #<input type="number" id="canvasgoto"> canvas <button onclick="gotoCanvas()">Go!</button></p>
+        <script>
+            function gotoCanvas() {
+                window.location.replace("/canvas/"+$('#canvasgoto').val());
+            }
+        </script>
+    </body>
+{% endblock %}

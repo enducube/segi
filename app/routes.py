@@ -54,14 +54,17 @@ def newcanvas():
 @login_required
 def canvas(canvasid):
     upvoted = False
-    print(current_user.upvoted)
-    if Canvas.query.filter_by(id=canvasid).first() in current_user.upvoted:
-        upvoted = True
-    upvotenumber = len(Canvas.query.filter_by(id=canvasid).first().upvotes)
-    # get the canvas string from the database
-    canvasstring = Canvas.query.filter_by(id=canvasid).first().canvasstring
-    return render_template("canvas.html", canvasstring=canvasstring, canvasid=canvasid, 
-    upvotenumber=upvotenumber, upvoted=str(upvoted).lower())
+    the_canvas = Canvas.query.filter_by(id=canvasid).first()
+    if the_canvas:
+        if the_canvas in current_user.upvoted:
+            upvoted = True
+        upvotenumber = len(Canvas.query.filter_by(id=canvasid).first().upvotes)
+        # get the canvas string from the database
+        canvasstring = Canvas.query.filter_by(id=canvasid).first().canvasstring
+        return render_template("canvas.html", canvasstring=canvasstring, canvasid=canvasid, 
+        upvotenumber=upvotenumber, upvoted=str(upvoted).lower())
+    else:
+        return render_template("404.html", canvasid=canvasid)
 
 
 # Socket.IO routes, used for real-time communication
@@ -83,7 +86,7 @@ def save_canvas(json):
     Canvas.query.filter_by(id=int(data["id"])).first().canvasstring = str(data["canvasstring"])
     db.session.commit()
 
-@socketio.on("upvote")
+@socketio.on("upvote") # when the canvas has been upvoted
 def upvote(json):
     data = dict(json)
     new_upvote = UserUpvoteCanvas.insert((None, data["id"], current_user.id))
@@ -92,10 +95,10 @@ def upvote(json):
     data["upvotecount"] = len(db.session.query(UserUpvoteCanvas).filter_by(canvas_id=data["id"]).all())
     socketio.emit("upvoted",data,to=data["id"])
 
-@socketio.on("unupvote")
+@socketio.on("unupvote") # when the canvas has been unupvoted
 def unupvote(json):
     data = dict(json)
-    
+    # get the upvote, and then execute a deletion on the upvote previously made by the user
     the_upvote = db.session.query(UserUpvoteCanvas).filter_by(canvas_id=data["id"]).first()
     db.engine.execute(UserUpvoteCanvas.delete().where(UserUpvoteCanvas.c.id==the_upvote.id))
     data["upvotecount"] = len(db.session.query(UserUpvoteCanvas).filter_by(canvas_id=data["id"]).all())
