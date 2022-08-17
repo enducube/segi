@@ -40,6 +40,13 @@ def login():
             return redirect("/")
     return render_template("login.html", form=loginform, reference="login")
 
+# Profile page, where you can view a user's upvoted canvases
+
+@app.route("/profile/<string:username>")
+def profile(username):
+    user = User.query.filter_by(username=username).first()
+    return render_template("profile.html", user=user)
+
 # Creating a new canvas
 @app.route("/newcanvas",methods=["GET", "POST"])
 def newcanvas():
@@ -55,7 +62,7 @@ def newcanvas():
 def canvas(canvasid):
     upvoted = False
     the_canvas = Canvas.query.filter_by(id=canvasid).first()
-    if the_canvas:
+    if the_canvas: # check if the canvas exists
         if the_canvas in current_user.upvoted:
             upvoted = True
         upvotenumber = len(Canvas.query.filter_by(id=canvasid).first().upvotes)
@@ -63,8 +70,12 @@ def canvas(canvasid):
         canvasstring = Canvas.query.filter_by(id=canvasid).first().canvasstring
         return render_template("canvas.html", canvasstring=canvasstring, canvasid=canvasid, 
         upvotenumber=upvotenumber, upvoted=str(upvoted).lower())
-    else:
-        return render_template("404.html", canvasid=canvasid)
+    else: # if the canvas doesn't exist, make a new one!
+        new_canvas = Canvas(id=canvasid)
+        new_canvas.canvasstring = ""
+        db.session.add(new_canvas)
+        db.session.commit()
+        return redirect("/canvas/"+str(new_canvas.id))
 
 
 # Socket.IO routes, used for real-time communication
