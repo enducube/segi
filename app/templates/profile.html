@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block header %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
+{% endblock %}
+{% block content %}
+    <body>
+        <h1>{{ user.username }}</h1>
+        <h2>upvoted canvases</h2>
+        {% for i in user.upvoted %}
+        <a href="/canvas/{{ i.id }}">canvas {{ i.id }}</a>
+        {% endfor %}
+    </body>
+{% endblock %}

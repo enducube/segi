@@ -11,7 +11,9 @@
 {% endblock %}
 {% block content %}
 <body oncontextmenu="event.preventDefault();">
-    <h1>canvas #{{ canvasid }}</h1>
+    <h1><a href="/canvas/{{ canvasid-1 }}" class="material-icons arrow">keyboard_arrow_left</a>
+        canvas #{{ canvasid }}
+        <a href="/canvas/{{ canvasid+1 }}" class="material-icons arrow">keyboard_arrow_right</a></h1>
 <div id="canvas-container">
     <canvas id="pixelcanvas" width="512" height="512"></canvas>
     <button class="material-icons upvote-button" id="upvote-button" onclick="upvote()">keyboard_arrow_up</button><span id="upvote-count">{{ upvotenumber }}</span>
