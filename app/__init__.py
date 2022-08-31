@@ -1,10 +1,14 @@
 from flask_socketio import SocketIO
 from flask import Flask
-import gevent, geventwebsocket
+import gevent
+import geventwebsocket
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin
+from flask_login import (LoginManager, login_user, logout_user,
+                         login_required, UserMixin)
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField
+
+
 # Initialise app and config
 
 app = Flask(__name__)
@@ -21,4 +25,5 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 
 # Connect the routes
+
 from app import routes

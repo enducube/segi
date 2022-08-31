@@ -72,6 +72,8 @@ canvas {
     border-radius: 5px;
 }
 
+/* -------------------colour buttons------------------- */
+
 .black {
     background-color: black;
 }
@@ -100,7 +102,7 @@ canvas {
 .selected {
    border-color: white;
 }
-
+/* -------------------upvotes and arrows------------------- */
 .upvote-button {
     background:transparent;
     border-style: none;
