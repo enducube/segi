@@ -1,3 +1,5 @@
+// SEGI Canvas, by enducube
+
 var c = document.getElementById("pixelcanvas");
 var ctx = c.getContext("2d");
 var pixelCanvasSize = 64;
@@ -41,7 +43,9 @@ function drawPixel(x, y, colour) {
     ctx.fillRect(x*pixelSize, y*pixelSize, pixelSize, pixelSize);
 }
 
-// canvasToString() and parseCanvasString(canvasstring) - handles saving and loading canvas to and from a string of numbers
+// canvasToString() and parseCanvasString(canvasstring)
+//
+// handles saving and loading canvas to and from a string of numbers
 function canvasToString() {
     var finalstring = ""
     for(i=0;i<pixelCanvasSize;i++){
@@ -88,7 +92,7 @@ c.addEventListener("mousemove", function(e) {
         });
     }
 });
-
+// when mouse clicked
 c.addEventListener("mousedown", function(e){
     if (e.button == 0) {
         drawPixel(selectedPixel[0], selectedPixel[1], selectedColour);
@@ -100,7 +104,6 @@ c.addEventListener("mousedown", function(e){
         });
         drawing = true;
     } else if (e.button == 2) {
-        console.log("right button");
         drawPixel(selectedPixel[0], selectedPixel[1], "white");
         socket.emit("pixel", {
             "xpos": selectedPixel[0], 
@@ -112,7 +115,7 @@ c.addEventListener("mousedown", function(e){
     }
 });
 
-
+// when mouse button released
 c.addEventListener("mouseup", function(e){
     drawing = false;
     drawingalt = false;
@@ -122,13 +125,16 @@ c.addEventListener("mouseup", function(e){
     });
 });
 
+// called when a colour box is selected
 function selectColour(colour) {
     var colourBoxes = document.getElementsByClassName("box");
     var n = colourBoxes.length;
+    // remove the selected class from every other box
     for (i=0;i<n;i++) {
         var e = colourBoxes[i];
         e.classList.remove("selected");
     }
+    // add the selected class to the actually selected colour box
     document.getElementsByClassName(colour)[0].classList.add("selected");
     selectedColour = colour;
 }
@@ -137,10 +143,10 @@ function selectColour(colour) {
 // Socket.IO functionality ------- Real-Time pixel-placing & synchronisation
 
 socket.on("pixel", function(data) {
-    //console.log(data);
     drawPixel(data.xpos, data.ypos, data.colour);
 });
 
+// to see whether or not socket.io works
 socket.on("test", function(data) {
     console.log("SEGI by enducube");
 });
