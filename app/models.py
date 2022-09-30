@@ -1,3 +1,4 @@
+from enum import unique
 from flask import Flask
 from app import db, UserMixin, StringField, PasswordField, FlaskForm
 from wtforms.validators import InputRequired
@@ -22,7 +23,7 @@ class Canvas(db.Model):
 class User(db.Model, UserMixin):
     __tablename__ = "user"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    username = db.Column(db.String)
+    username = db.Column(db.String, unique=True)
     password = db.Column(db.String)
     upvoted = db.relationship("Canvas",
                               secondary=UserUpvoteCanvas,
@@ -36,5 +37,5 @@ class User(db.Model, UserMixin):
 
 
 class LoginForm(FlaskForm):
-    username = StringField(InputRequired())
-    password = PasswordField(InputRequired())
+    username = StringField(validators=[InputRequired()])
+    password = PasswordField(validators=[InputRequired()])

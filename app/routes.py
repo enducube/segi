@@ -95,7 +95,7 @@ def canvas(canvasid):
 @socketio.on("join")  # upon user join
 def join(json):
     data = dict(json)
-    # make the signals specific to this canvas
+    # make the socket.io signals specific to this canvas
     join_room(room=data["room"])
     socketio.emit("test", to=data["room"])
 
@@ -103,6 +103,7 @@ def join(json):
 @socketio.on("pixel")  # when the user places a pixel
 def socket_pixel(json):
     data = dict(json)
+    # emit the signal with the pixel data to everyone else on that canvas
     socketio.emit("pixel", data, to=data["room"])
 
 

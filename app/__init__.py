@@ -12,11 +12,11 @@ from wtforms import StringField, PasswordField
 # Initialise app and config
 
 app = Flask(__name__)
-app.config["SECRET_KEY"] = "burgerio"
+app.config["SECRET_KEY"] = "thesegicanvas"
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///data.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-# Init other modules made by the app
+# Initialise other modules made by the app
 
 socketio = SocketIO(app=app)
 db = SQLAlchemy()
@@ -26,4 +26,4 @@ login_manager.init_app(app)
 
 # Connect the routes
 
-from app import routes
+from app import routes  # pep8 complains but this is intentional

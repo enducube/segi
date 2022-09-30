@@ -4,7 +4,9 @@
         <title></title>
     </head>
     <body>
-        <h1>{{ reference }}</h1>
+        
+        <h1>{{ reference }}</h1> 
+        {# reference is replaced by "login" or "register" #}
         <div id="login">
             <form method="POST">
                 {{ form.csrf_token }}
