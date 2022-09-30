@@ -6,6 +6,9 @@
 {% block content %}
     <body>
         <h1>{{ user.username }}</h1>
+        {% if current_user == user %}
+        <p>This is your profile. You can <a href="/logout">logout</a> here.</p>
+        {% endif %}
         <h2>upvoted canvases</h2>
         {% for i in user.upvoted %}
         <a href="/canvas/{{ i.id }}">canvas {{ i.id }}</a>

@@ -48,6 +48,10 @@ def login():
             return redirect("/")
     return render_template("login.html", form=loginform, reference="login")
 
+@app.route("/logout")
+def logout():
+    logout_user()
+    return redirect("/")
 
 # Profile page, where you can view a user's upvoted canvases
 @app.route("/profile/<string:username>")

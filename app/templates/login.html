@@ -1,9 +1,5 @@
-<html>
-    <head>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-        <title></title>
-    </head>
-    <body>
+{% extends "base.html" %}
+    {% block content %}
         
         <h1>{{ reference }}</h1> 
         {# reference is replaced by "login" or "register" #}
@@ -15,5 +11,4 @@
                 <input type="submit" value="{{ reference }}">
             </form>
         </div>
-        
-</html>
+    {% endblock %}
